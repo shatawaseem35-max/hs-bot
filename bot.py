@@ -23,7 +23,11 @@ def main():
     application.add_handler(CommandHandler("start", start))
     
     PORT = int(os.environ.get("PORT", 8080))
-    RAILWAY_URL = os.environ.get("RAILWAY_PUBLIC_DOMAIN", "localhost")
+    RAILWAY_URL = os.environ.get("RAILWAY_PUBLIC_DOMAIN")
+    
+    if not RAILWAY_URL:
+        RAILWAY_URL = os.environ.get("RAILWAY_STATIC_URL", "localhost")
+    
     webhook_url = f"https://{RAILWAY_URL}/{BOT_TOKEN}"
     
     logger.info(f"Starting webhook on port {PORT}")
