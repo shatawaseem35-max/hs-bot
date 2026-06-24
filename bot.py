@@ -24,5 +24,5 @@ def main():
     
    
    
-   application.run_polling(drop_pending_updates=True)
+  application.run_polling()
    
