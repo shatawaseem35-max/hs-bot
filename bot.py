@@ -22,21 +22,7 @@ def main():
     application = Application.builder().token(BOT_TOKEN).build()
     application.add_handler(CommandHandler("start", start))
     
-    PORT = int(os.environ.get("PORT", 8080))
-    RAILWAY_URL = os.environ.get("RAILWAY_PUBLIC_DOMAIN")
-    
-    if not RAILWAY_URL:
-        RAILWAY_URL = os.environ.get("RAILWAY_STATIC_URL", "localhost")
-    
-    webhook_url = f"https://{RAILWAY_URL}/{BOT_TOKEN}"
-    
-    logger.info(f"Starting webhook on port {PORT}")
-    
-    application.run_webhook(
-        listen="0.0.0.0",
-        port=PORT,
-        webhook_url=webhook_url
-    )
-
-if __name__ == "__main__":
-    main()
+   
+   
+    application.run_polling()
+   
